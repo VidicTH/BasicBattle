@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TouchControls : MonoBehaviour {
 
-	public static bool enabled = true;
+	public static bool tEnabled = true;
 	
 	public float swipeDistance = 50f;
 	public float tapTime = 0.1f;
@@ -20,14 +20,14 @@ public class TouchControls : MonoBehaviour {
 	// Use this for initialization
 	void Start() 
 	{
-		enabled = true;
+		tEnabled = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 		
-		if ( TouchControls.enabled ) {
+		if ( TouchControls.tEnabled ) {
 		
 			if ( Input.GetMouseButtonDown(0) )
 			{

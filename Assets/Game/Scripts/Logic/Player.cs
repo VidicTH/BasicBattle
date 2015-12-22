@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
 
 
 	Rigidbody2D _rigidbody2d;
-	public Rigidbody2D rigidbody2D {
+	public Rigidbody2D pRigidbody2D {
 		get {
 			if (_rigidbody2d == null) {
 				_rigidbody2d = GetComponent<Rigidbody2D>();
@@ -31,14 +31,27 @@ public class Player : MonoBehaviour {
 	Vector2 velocity = Vector2.zero;
 	public bool isGoup;
 	public bool isDash;
+
+	//SerializeField 
+	[SerializeField] StateManager weapons;
 	void Awake () {
-		_instance = this;
+		if (_instance != null) {
+			Debug.LogError("Multiple Player Instances Exist.");
+		} else {
+			_instance = this;
+		}
 	}
 
 	// Use this for initialization
 	void Start () {
+		weapons.ChangeState ("Hammer");
+		if (weapons.current != null) {
+			weapon = weapons.current.GetComponent<Weapon> ();
+		}
+
 		velocity.y = -3;
 		isGoup = false;
+		this.weapon.CanAttack = true;
 	}
 	
 	// Update is called once per frame
@@ -49,11 +62,11 @@ public class Player : MonoBehaviour {
 			} else {
 				GoDown ();
 			}
-			rigidbody2D.velocity = velocity;
+			pRigidbody2D.velocity = velocity;
 		}
-		else if (rigidbody2D != null) {
+		else if (pRigidbody2D != null) {
 
-			rigidbody2D.velocity = new Vector2 (0, 0);			
+			pRigidbody2D.velocity = new Vector2 (0, 0);			
 
 		}
 
@@ -82,15 +95,9 @@ public class Player : MonoBehaviour {
 			if ( this.weapon.CanAttack )
 			{
 				this.weapon.Attack();
+
 			}
 		}
 	}
-	public void DisableWeaponByTime(float timer){
-		StartCoroutine (IEDisableWeapon(timer));
-	}
-	IEnumerator IEDisableWeapon(float timer){
-		this.weapon.CanAttack = false;
-		yield return new WaitForSeconds (timer);
-		this.weapon.CanAttack = true;
-	}
+
 }

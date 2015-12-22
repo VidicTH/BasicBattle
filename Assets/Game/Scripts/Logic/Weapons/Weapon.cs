@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
 
+	public float timeToEnable;
 	private bool _canAttack;
 	public virtual bool CanAttack {
 		get {
@@ -13,10 +14,17 @@ public class Weapon : MonoBehaviour {
 		}
 	}
 
-	
+
 	public virtual void Attack()
 	{
-
+		DisableWeaponByTime ();
 	}
-
+	public void DisableWeaponByTime(){
+		StartCoroutine (IEDisableWeapon());
+	}
+	IEnumerator IEDisableWeapon(){
+		_canAttack = false;
+		yield return new WaitForSeconds (timeToEnable);
+		_canAttack = true;
+	}
 }

@@ -43,4 +43,8 @@ public class GamePanel : AnimatedPanel {
 		
 	}
 	#endregion
+
+	public void Attack(){
+		Player.instance.Attack ();
+	}
 }
