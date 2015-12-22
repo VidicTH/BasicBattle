@@ -18,14 +18,14 @@ public class AnimatedPanel : PanelController {
 		}
 	}
 	
-	protected Animation _animation;
-	public Animation animation {
+	protected Animation _panelAnimation;
+	public Animation panelAnimation {
 		get {
-			if ( _animation == null )
+			if ( _panelAnimation == null )
 			{
-				_animation = GetComponent<Animation>();
+				_panelAnimation = GetComponent<Animation>();
 			}
-			return _animation;
+			return _panelAnimation;
 		}
 	}
 	
@@ -70,8 +70,8 @@ public class AnimatedPanel : PanelController {
 		
 		if ( showAnimation != null )
 		{
-			Debug.Log("Default: " + this.animation.clip.name);
-			ActiveAnimation anim = ActiveAnimation.Play(this.animation,showAnimation.name,showPlayDirection,EnableCondition.EnableThenPlay,DisableCondition.DoNotDisable);
+			Debug.Log("Default: " + this.panelAnimation.clip.name);
+			ActiveAnimation anim = ActiveAnimation.Play(this.panelAnimation,showAnimation.name,showPlayDirection,EnableCondition.EnableThenPlay,DisableCondition.DoNotDisable);
 			
 			if ( anim == null ) 
 			{
