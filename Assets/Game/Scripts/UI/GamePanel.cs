@@ -31,6 +31,7 @@ public class GamePanel : AnimatedPanel {
 	}
 	protected override void PanelDidShow ()
 	{
+		Game.instance.isPause = false;
 		
 	}
 	protected override void PanelWillHide ()
