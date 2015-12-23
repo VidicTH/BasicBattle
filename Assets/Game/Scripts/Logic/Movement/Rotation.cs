@@ -4,13 +4,13 @@ using System.Collections;
 public class Rotation : MonoBehaviour
 {
 
-	public float rotateSpeed = 460f;
+	public float rotateSpeed = 700f;
 	public bool clockwise = true;
 	private int coreValue;
 	// Update is called once per frame
 	void Start ()
 	{
-		rotateSpeed = 460;
+		
 		if (clockwise) {
 			coreValue = -1;
 		} else {

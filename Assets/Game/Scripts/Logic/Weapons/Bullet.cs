@@ -15,4 +15,11 @@ public class Bullet : MonoBehaviour {
 	void OnBecameInvisible(){
 		Destroy (this.gameObject);
 	}
+	void OnTriggerEnter2D(Collider2D other)
+	{				
+		Destroy (this.gameObject);
+		Destroy (other.gameObject);
+		Player.instance.score += 1;
+		Debug.LogError (Player.instance.score.ToString());
+	}
 }

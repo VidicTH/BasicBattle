@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class GamePanel : AnimatedPanel {
+public class GamePanel : AnimatedPanel
+{
 
 
 	static GamePanel _instance;
+
 	public static GamePanel instance {
 		get {
 			return _instance;
@@ -13,7 +15,8 @@ public class GamePanel : AnimatedPanel {
 
 
 	// Use this for initialization
-	void Awake () {
+	void Awake ()
+	{
 		if (_instance != null) {
 			Debug.LogError ("Multiple Game Instances Exist.");
 		} else {
@@ -29,22 +32,29 @@ public class GamePanel : AnimatedPanel {
 	{
 
 	}
+
 	protected override void PanelDidShow ()
 	{
 		Game.instance.isPause = false;
 		
 	}
+
 	protected override void PanelWillHide ()
 	{
 		
 	}
+
 	protected override void PanelDidHide ()
 	{
 		
 	}
+
 	#endregion
 
-	public void Attack(){
+	public void Attack ()
+	{
 		Player.instance.Attack ();
 	}
+
+
 }

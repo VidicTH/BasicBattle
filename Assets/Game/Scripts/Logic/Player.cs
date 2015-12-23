@@ -29,8 +29,11 @@ public class Player : MonoBehaviour {
 	}
 	Weapon weapon;
 	Vector2 velocity = Vector2.zero;
+	//PUBLIC VALUE
 	public bool isGoup;
-	public bool isDash;
+	public bool isSlow;
+	public bool isFast;
+	public int score;
 
 	//SerializeField 
 	[SerializeField] StateManager weapons;
@@ -48,10 +51,10 @@ public class Player : MonoBehaviour {
 		if (weapons.current != null) {
 			weapon = weapons.current.GetComponent<Weapon> ();
 		}
-
-		velocity.y = -3;
+		velocity.y = -2f;
 		isGoup = false;
 		this.weapon.CanAttack = true;
+		score = 0;
 	}
 	
 	// Update is called once per frame
@@ -71,23 +74,36 @@ public class Player : MonoBehaviour {
 		}
 
 	}
-	public void GoUp(){
-		if (!isDash) {
+	public void GoUp(){		
+		if (isSlow) {
+			velocity.y = 1;
+		} else if (isFast) {
 			velocity.y = 3;
-		} else
-			velocity.y = 1.5f;
+		} else {
+			velocity.y = 2f;
+		}
 	}
 	public void GoDown(){
-		if (!isDash) {
+		if (isSlow) {
+			velocity.y = -1;
+		} else if (isFast) {
 			velocity.y = -3;
-		} else
-			velocity.y = -1.5f;
+		} else {
+			velocity.y = -2f;
+		}
 	}
-	public void DashEnable(){
-		isDash = true;
+
+	public void SlowEnable(){
+		isSlow = true;
 	}
-	public void DashDisable(){
-		isDash = false;
+	public void SlowDisable(){
+		isSlow = false;
+	}
+	public void FastEnable(){
+		isFast = true;
+	}
+	public void FastDisable(){
+		isFast = false;
 	}
 	public void Attack(){
 		if ( this.weapon != null )
