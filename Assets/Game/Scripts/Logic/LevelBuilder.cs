@@ -23,15 +23,24 @@ public class LevelBuilder : MonoBehaviour {
 	public GameObject obstacles;
 	void Start(){
 		_timer.Start (3f);
+		GameObject obstacle = GameObject.Instantiate (obstacles);
+		obstacle.transform.parent = ObstaclesTarget.instance.gameObject.transform;
+		obstacle.transform.localPosition = Vector3.zero;
 	}
 	void Update(){
-		if (!Game.instance.isPause) {
-			if (_timer.isZero) {
-				_timer.Restart (3f);
-				GameObject obstacle = GameObject.Instantiate (obstacles);
-				obstacle.transform.parent = ObstaclesTarget.instance.gameObject.transform;
-				obstacle.transform.localPosition = Vector3.zero;
-			}
-		}
+//		if (!Game.instance.isPause) {
+//			if (_timer.isZero) {
+//				_timer.Restart (3f);
+//				GameObject obstacle = GameObject.Instantiate (obstacles);
+//				obstacle.transform.parent = ObstaclesTarget.instance.gameObject.transform;
+//				obstacle.transform.localPosition = Vector3.zero;
+//			}
+//		}
+	}
+
+	public void SpawnObjects(){
+		GameObject obstacle = GameObject.Instantiate (obstacles);
+		obstacle.transform.parent = ObstaclesTarget.instance.gameObject.transform;
+		obstacle.transform.localPosition = Vector3.zero;
 	}
 }

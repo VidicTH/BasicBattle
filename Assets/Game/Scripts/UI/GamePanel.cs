@@ -12,6 +12,14 @@ public class GamePanel : AnimatedPanel
 			return _instance;
 		}
 	}
+	Game game;
+	Player player;
+
+	// 
+	[Header("\tUI Field")]
+
+	[SerializeField] UILabel scoreLabel;
+
 
 
 	// Use this for initialization
@@ -22,6 +30,7 @@ public class GamePanel : AnimatedPanel
 		} else {
 			_instance = this;
 		}
+		game = Game.instance;
 
 	}
 
@@ -56,5 +65,12 @@ public class GamePanel : AnimatedPanel
 		Player.instance.Attack ();
 	}
 
+	public void UpdateScoreLabe(){
+		scoreLabel.text = "Score: " +  Player.instance.score.ToString ("0000");
+	}
 
+	public void GameOver(){
+		game.isPause = true;
+		GameGui.instance.PushPanel ("ResultPanel");
+	}
 }

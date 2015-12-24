@@ -21,5 +21,6 @@ public class Bullet : MonoBehaviour {
 		Destroy (other.gameObject);
 		Player.instance.score += 1;
 		Debug.LogError (Player.instance.score.ToString());
+		GamePanel.instance.UpdateScoreLabe ();
 	}
 }
