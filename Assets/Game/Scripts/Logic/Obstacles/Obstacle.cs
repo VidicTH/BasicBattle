@@ -13,9 +13,7 @@ public class Obstacle : MonoBehaviour {
 	
 	}
 	void OnBecameInvisible(){	
-		LevelBuilder.instance.SpawnObjects ();	
 		Destroy (this.gameObject);	
-		Debug.LogError ("OnBecameInvisible");
 	}
 
 }

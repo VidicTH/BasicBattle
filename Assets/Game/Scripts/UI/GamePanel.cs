@@ -12,7 +12,6 @@ public class GamePanel : AnimatedPanel
 			return _instance;
 		}
 	}
-	Game game;
 	Player player;
 
 	// 
@@ -20,7 +19,7 @@ public class GamePanel : AnimatedPanel
 
 	[SerializeField] UILabel scoreLabel;
 
-
+	[SerializeField] GameObject gamePrefab;
 
 	// Use this for initialization
 	void Awake ()
@@ -30,7 +29,6 @@ public class GamePanel : AnimatedPanel
 		} else {
 			_instance = this;
 		}
-		game = Game.instance;
 
 	}
 
@@ -43,7 +41,8 @@ public class GamePanel : AnimatedPanel
 	}
 
 	protected override void PanelDidShow ()
-	{
+	{		
+		GameObject game = GameObject.Instantiate (gamePrefab);
 		Game.instance.isPause = false;
 		
 	}
@@ -70,7 +69,9 @@ public class GamePanel : AnimatedPanel
 	}
 
 	public void GameOver(){
-		game.isPause = true;
+		GameObject gamePreb = GameObject.Find ("GameplayPrefab(Clone)");
+		Destroy (gamePreb);
+		//game.isPause = true;
 		GameGui.instance.PushPanel ("ResultPanel");
 	}
 }

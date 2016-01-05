@@ -9,8 +9,9 @@ public class Blocker : MonoBehaviour
 	{		
 
 		if (other.tag == "Obstacle") {
-			if(topBlocker)
-			Debug.LogError ("Hit Pb");
+			if(topBlocker){
+				GamePanel.instance.GameOver ();
+			}
 		} else {
 			var player = Player.instance;
 			if (!topBlocker) {
